@@ -41,6 +41,7 @@ else
 endif
 
 CPLUS_FLAGS += -DUSE_PTHREAD $(ITT_NOTIFY)
+CPLUS_FLAGS += -D__TBB_DYNAMIC_LOAD_ENABLED=0
 
 ifeq (1,$(tbb_cpf))
 # For correct ucontext.h structures layout
@@ -91,8 +92,8 @@ endif
 
 ifdef SDKROOT
     CPLUS_FLAGS += -isysroot $(SDKROOT)
-    LINK_FLAGS += -L$(SDKROOT)/usr/lib/system -L$(SDKROOT)/usr/lib/
-    LIB_LINK_FLAGS += -L$(SDKROOT)/usr/lib/system -L$(SDKROOT)/usr/lib/
+    LINK_FLAGS += -L$(SDKROOT)/usr/include -L$(SDKROOT)/usr/lib/
+    LIB_LINK_FLAGS += -L$(SDKROOT)/usr/include -L$(SDKROOT)/usr/lib/
 endif
 
 ifeq (ios,$(target))
